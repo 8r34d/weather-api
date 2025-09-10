@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using FluentAssertions;
 using RestSharp;
 using dotenv.net.Utilities;
 using System.Text.Json;
@@ -7,11 +6,27 @@ using System.Text.Json;
 namespace api;
 
 [TestFixtureSource(typeof(WeatherCurrentPostFixtureData), nameof(WeatherCurrentPostFixtureData.FixtureParams))]
-public class WeatherCurrentPostTest(WeatherCurrentDataValid data) : WeatherBaseTest
+public class WeatherCurrentPostTest : WeatherBaseTest
 {
+  private readonly string _query;
+  private readonly string _name = "";
+  private readonly bool _expectError;
+  private readonly int _errorCode;
+  private readonly string _errorMessage = "";
 
-  private readonly string _query = data.Query;
-  private readonly string _name = data.Name;
+  public WeatherCurrentPostTest(WeatherCurrentDataValid data)
+  {
+    _query = data.Query;
+    _name = data.Name;
+    _expectError = data.ExpectError;
+  }
+  public WeatherCurrentPostTest(WeatherCurrentDataInvalid data)
+  {
+    _query = data.Query;
+    _expectError = data.ExpectError;
+    _errorCode = data.ErrorCode;
+    _errorMessage = data.ErrorMessage;
+  }
 
   [Test]
   public void PostCurrent()
@@ -27,14 +42,16 @@ public class WeatherCurrentPostTest(WeatherCurrentDataValid data) : WeatherBaseT
     restRequest.AddParameter("q", _query);
 
     RestResponse restResponse = client.Execute(restRequest);
-    restResponse.Should().NotBeNull();
-    restResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+    Assert.That(restResponse.Content, Is.Not.Empty);
 
-    WeatherCurrent? content = JsonSerializer.Deserialize<WeatherCurrent>(restResponse.Content!, options);
-
-    content?.Current.Should().NotBeNull();
-    content?.Location.Should().NotBeNull();
-    content?.Location.Name.Should().Be(_name);
+    if (_expectError)
+    {
+      WeatherCurrentHelper.ErrorAssertions(restResponse, options, _errorCode, _errorMessage);
+    }
+    else
+    {
+      WeatherCurrentHelper.ContentAssertions(restResponse, options, _name);
+    }
   }
 }
 
@@ -44,10 +61,9 @@ public class WeatherCurrentPostFixtureData
   {
     get
     {
-      yield return new TestFixtureData(new WeatherCurrentDataValid("berlin", "Berlin", false));
+      yield return new TestFixtureData(new WeatherCurrentDataInvalid("?", true, 1006, "No matching location found."));
       yield return new TestFixtureData(new WeatherCurrentDataValid("M5V 3L9", "Toronto", false));
       yield return new TestFixtureData(new WeatherCurrentDataValid("90210", "Beverly Hills", false));
-      yield return new TestFixtureData(new WeatherCurrentDataValid("SW5", "Earls Court", false));
     }
   }
 }

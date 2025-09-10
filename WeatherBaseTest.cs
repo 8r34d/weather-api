@@ -8,7 +8,6 @@ public abstract class WeatherBaseTest
   protected readonly string _baseUrl = "https://api.weatherapi.com/v1";
   protected JsonSerializerOptions options;
 
-
   [OneTimeSetUp]
   public void OneTimeSetUp()
   {
@@ -18,5 +17,4 @@ public abstract class WeatherBaseTest
     };
     DotEnv.Load(options: new DotEnvOptions(probeForEnv: true, probeLevelsToSearch: 3));
   }
-
 }
