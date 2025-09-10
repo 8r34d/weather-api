@@ -8,23 +8,11 @@ using System.Text.Json;
 namespace api;
 
 [TestFixtureSource(typeof(WeatherPostCurrentFixtureData), nameof(WeatherPostCurrentFixtureData.FixtureParams))]
-public class WeatherPostCurrentTest(string query, string name)
+public class WeatherPostCurrentTest(string query, string name) : WeatherBaseTest
 {
 
   private readonly string _query = query;
   private readonly string _name = name;
-  private readonly string _baseUrl = "https://api.weatherapi.com/v1";
-  private JsonSerializerOptions options;
-
-  [OneTimeSetUp]
-  public void OneTimeSetUp()
-  {
-    options = new JsonSerializerOptions
-    {
-      PropertyNameCaseInsensitive = true
-    };
-    DotEnv.Load(options: new DotEnvOptions(probeForEnv: true, probeLevelsToSearch: 3));
-  }
 
   [Test]
   public void PostCurrent()

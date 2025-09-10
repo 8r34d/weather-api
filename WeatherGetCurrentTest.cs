@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace api;
 
 [TestFixtureSource(typeof(WeatherGetCurrentFixtureData), nameof(WeatherGetCurrentFixtureData.FixtureParams))]
-public class WeatherGetCurrentTest
+public class WeatherGetCurrentTest : WeatherBaseTest
 {
 
   private readonly string _query;
@@ -16,9 +16,6 @@ public class WeatherGetCurrentTest
   private readonly bool _expectError;
   private readonly int _errorCode;
   private readonly string _errorMessage = "";
-  private readonly string _baseUrl = "https://api.weatherapi.com/v1";
-  private JsonSerializerOptions options;
-
 
   public WeatherGetCurrentTest(string query, string name, bool expectError)
   {
@@ -32,17 +29,6 @@ public class WeatherGetCurrentTest
     _expectError = expectError;
     _errorCode = errorCode;
     _errorMessage = errorMessage;
-  }
-
-
-  [OneTimeSetUp]
-  public void OneTimeSetUp()
-  {
-    options = new JsonSerializerOptions
-    {
-      PropertyNameCaseInsensitive = true
-    };
-    DotEnv.Load(options: new DotEnvOptions(probeForEnv: true, probeLevelsToSearch: 3));
   }
 
   [Test]
