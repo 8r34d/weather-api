@@ -60,6 +60,4 @@ public class WeatherCurrent
 {
   public required Location Location { get; set; }
   public required Current Current { get; set; }
-
-  // public required string bogus { get; set; }
 }
