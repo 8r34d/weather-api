@@ -1,14 +1,13 @@
 ﻿using System.Net;
 using FluentAssertions;
 using RestSharp;
-using dotenv.net;
 using dotenv.net.Utilities;
 using System.Text.Json;
 
 namespace api;
 
-[TestFixtureSource(typeof(WeatherGetCurrentFixtureData), nameof(WeatherGetCurrentFixtureData.FixtureParams))]
-public class WeatherGetCurrentTest : WeatherBaseTest
+[TestFixtureSource(typeof(WeatherCurrentGetFixtureData), nameof(WeatherCurrentGetFixtureData.FixtureParams))]
+public class WeatherCurrentGetTest : WeatherBaseTest
 {
 
   private readonly string _query;
@@ -17,18 +16,18 @@ public class WeatherGetCurrentTest : WeatherBaseTest
   private readonly int _errorCode;
   private readonly string _errorMessage = "";
 
-  public WeatherGetCurrentTest(string query, string name, bool expectError)
+  public WeatherCurrentGetTest(WeatherCurrentDataValid data)
   {
-    _query = query;
-    _name = name;
-    _expectError = expectError;
+    _query = data.Query;
+    _name = data.Name;
+    _expectError = data.ExpectError;
   }
-  public WeatherGetCurrentTest(string query, bool expectError, int errorCode, string errorMessage)
+  public WeatherCurrentGetTest(WeatherCurrentDataInvalid data)
   {
-    _query = query;
-    _expectError = expectError;
-    _errorCode = errorCode;
-    _errorMessage = errorMessage;
+    _query = data.Query;
+    _expectError = data.ExpectError;
+    _errorCode = data.ErrorCode;
+    _errorMessage = data.ErrorMessage;
   }
 
   [Test]
@@ -69,15 +68,15 @@ public class WeatherGetCurrentTest : WeatherBaseTest
     }
   }
 
-  public class WeatherGetCurrentFixtureData
+  public class WeatherCurrentGetFixtureData
   {
     public static IEnumerable<TestFixtureData> FixtureParams
     {
       get
       {
-        yield return new TestFixtureData("london", "London", false);
-        yield return new TestFixtureData("IP1", "Ipswich", false);
-        yield return new TestFixtureData("90521", true, 1006, "No matching location found.");
+        yield return new TestFixtureData(new WeatherCurrentDataValid("london", "London", false));
+        yield return new TestFixtureData(new WeatherCurrentDataValid("IP1", "Ipswich", false));
+        yield return new TestFixtureData(new WeatherCurrentDataInvalid("90521", true, 1006, "No matching location found."));
       }
     }
   }

@@ -1,18 +1,17 @@
 ﻿using System.Net;
 using FluentAssertions;
 using RestSharp;
-using dotenv.net;
 using dotenv.net.Utilities;
 using System.Text.Json;
 
 namespace api;
 
-[TestFixtureSource(typeof(WeatherPostCurrentFixtureData), nameof(WeatherPostCurrentFixtureData.FixtureParams))]
-public class WeatherPostCurrentTest(string query, string name) : WeatherBaseTest
+[TestFixtureSource(typeof(WeatherCurrentPostFixtureData), nameof(WeatherCurrentPostFixtureData.FixtureParams))]
+public class WeatherCurrentPostTest(WeatherCurrentDataValid data) : WeatherBaseTest
 {
 
-  private readonly string _query = query;
-  private readonly string _name = name;
+  private readonly string _query = data.Query;
+  private readonly string _name = data.Name;
 
   [Test]
   public void PostCurrent()
@@ -39,16 +38,16 @@ public class WeatherPostCurrentTest(string query, string name) : WeatherBaseTest
   }
 }
 
-public class WeatherPostCurrentFixtureData
+public class WeatherCurrentPostFixtureData
 {
   public static IEnumerable<TestFixtureData> FixtureParams
   {
     get
     {
-      yield return new TestFixtureData("berlin", "Berlin");
-      yield return new TestFixtureData("M5V 3L9", "Toronto");
-      yield return new TestFixtureData("90210", "Beverly Hills");
-      yield return new TestFixtureData("SW5", "Earls Court");
+      yield return new TestFixtureData(new WeatherCurrentDataValid("berlin", "Berlin", false));
+      yield return new TestFixtureData(new WeatherCurrentDataValid("M5V 3L9", "Toronto", false));
+      yield return new TestFixtureData(new WeatherCurrentDataValid("90210", "Beverly Hills", false));
+      yield return new TestFixtureData(new WeatherCurrentDataValid("SW5", "Earls Court", false));
     }
   }
 }
