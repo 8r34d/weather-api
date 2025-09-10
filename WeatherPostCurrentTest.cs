@@ -15,22 +15,20 @@ public class WeatherPostCurrentTest(string query, string name)
   private readonly string _name = name;
   private readonly string _baseUrl = "https://api.weatherapi.com/v1";
   private JsonSerializerOptions options;
+
   [OneTimeSetUp]
   public void OneTimeSetUp()
   {
-
     options = new JsonSerializerOptions
     {
       PropertyNameCaseInsensitive = true
     };
-
     DotEnv.Load(options: new DotEnvOptions(probeForEnv: true, probeLevelsToSearch: 3));
   }
 
   [Test]
   public void PostCurrent()
   {
-
     var format = "json";
     var name = "current";
     var postUrl = $"{_baseUrl}/v1/{name}.{format}";
