@@ -1,0 +1,20 @@
+namespace api;
+
+public enum TestType
+{
+  Pass,
+  Fail,
+  Skip
+}
+
+public class CurrentTestDataModel
+{
+  public TestType Type { get; set; }
+  public required string Ref { get; set; }
+  public required string Description { get; set; }
+  public required string Query { get; set; }
+  public required string Name { get; set; }
+  public required bool ExpectedError { get; set; }
+  public int ErrorCode { get; set; }
+  public required string ErrorMessage { get; set; }
+}

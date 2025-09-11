@@ -1,0 +1,3 @@
+Type,Ref,Description,Query,Name,ExpectedError,ErrorCode,ErrorMessage
+Pass,TC1001,First test case,stockholm,Stockholm,false,0,None
+Pass,TC1002,Second test case,london,London,false,0,None
