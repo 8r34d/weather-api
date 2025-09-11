@@ -5,7 +5,7 @@ using api.models;
 
 namespace api.helpers;
 
-public class WeatherAstronomyHelper
+public class AstronomyHelper
 {
   public static void ContentAssertions(
     RestResponse restResponse,

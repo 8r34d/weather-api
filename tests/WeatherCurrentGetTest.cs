@@ -30,11 +30,11 @@ public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
 
     if (_data.ExpectError)
     {
-      WeatherCurrentHelper.ErrorAssertions(restResponse, options, _data);
+      CurrentHelper.ErrorAssertions(restResponse, options, _data);
     }
     else
     {
-      WeatherCurrentHelper.ContentAssertions(restResponse, options, _data);
+      CurrentHelper.ContentAssertions(restResponse, options, _data);
     }
   }
 }

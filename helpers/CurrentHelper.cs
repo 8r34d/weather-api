@@ -5,7 +5,7 @@ using api.models;
 
 namespace api.helpers;
 
-public class WeatherCurrentHelper
+public class CurrentHelper
 {
   public static void ContentAssertions(
     RestResponse restResponse,

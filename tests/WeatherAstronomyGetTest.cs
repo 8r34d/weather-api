@@ -31,11 +31,11 @@ public class WeatherAstronomyGetTest(AstronomyTestDataModel data) : WeatherBaseT
 
     if (_data.ExpectError)
     {
-      WeatherAstronomyHelper.ErrorAssertions(restResponse, options, _data);
+      AstronomyHelper.ErrorAssertions(restResponse, options, _data);
     }
     else
     {
-      WeatherAstronomyHelper.ContentAssertions(restResponse, options, _data);
+      AstronomyHelper.ContentAssertions(restResponse, options, _data);
     }
   }
 }
