@@ -1,20 +1,20 @@
 namespace api.models;
 
-public class CurrentCondition
+public class Condition
 {
   public required string Text { get; set; }
   public required string Icon { get; set; }
   public required int Code { get; set; }
 }
 
-public class CurrentCurrent
+public class Current
 {
   public required int Last_updated_epoch { get; set; }
   public required string Last_updated { get; set; }
   public required double Temp_c { get; set; }
   public required double Temp_f { get; set; }
   public required int Is_day { get; set; }
-  public required CurrentCondition Condition { get; set; }
+  public required Condition Condition { get; set; }
   public required double Wind_mph { get; set; }
   public required double Wind_kph { get; set; }
   public required int Wind_degree { get; set; }
@@ -44,8 +44,8 @@ public class CurrentCurrent
   public required double Gti { get; set; }
 }
 
-public class WeatherCurrentModel
+public class CurrentModel
 {
   public required Location Location { get; set; }
-  public required CurrentCurrent Current { get; set; }
+  public required Current Current { get; set; }
 }

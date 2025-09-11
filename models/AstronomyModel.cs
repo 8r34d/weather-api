@@ -1,6 +1,6 @@
 namespace api.models;
 
-public class AstronomyAstro
+public class Astro
 {
   public required string Sunrise { get; set; }
   public required string Sunset { get; set; }
@@ -12,13 +12,13 @@ public class AstronomyAstro
   public required int Is_sun_up { get; set; }
 }
 
-public class AstronomyAstronomy
+public class Astronomy
 {
-  public required AstronomyAstro Astro { get; set; }
+  public required Astro Astro { get; set; }
 }
 
-public class WeatherAstronomyModel
+public class AstronomyModel
 {
   public required Location Location { get; set; }
-  public required AstronomyAstronomy Astronomy { get; set; }
+  public required Astronomy Astronomy { get; set; }
 }

@@ -6,7 +6,7 @@ public class Error
   public required string Message { get; set; }
 }
 
-public class WeatherErrorModel
+public class ErrorModel
 {
   public required Error Error { get; set; }
 }

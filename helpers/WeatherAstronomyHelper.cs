@@ -14,7 +14,7 @@ public class WeatherAstronomyHelper
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-    WeatherAstronomyModel? content = JsonSerializer.Deserialize<WeatherAstronomyModel>(restResponse.Content!, options);
+    AstronomyModel? content = JsonSerializer.Deserialize<AstronomyModel>(restResponse.Content!, options);
 
     Assert.Multiple(() =>
     {
@@ -41,7 +41,7 @@ public class WeatherAstronomyHelper
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
 
-    WeatherErrorModel? weatherError = JsonSerializer.Deserialize<WeatherErrorModel>(restResponse.Content!, options);
+    ErrorModel? weatherError = JsonSerializer.Deserialize<ErrorModel>(restResponse.Content!, options);
 
     Assert.That(weatherError?.Error, Is.Not.Null);
     Assert.Multiple(() =>
