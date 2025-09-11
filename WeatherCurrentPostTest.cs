@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using RestSharp;
 using dotenv.net.Utilities;
-using System.Text.Json;
 
 namespace api;
 
@@ -16,12 +15,17 @@ public class WeatherCurrentPostTest : WeatherBaseTest
 
   public WeatherCurrentPostTest(WeatherCurrentDataValid data)
   {
+    Assert.That(data.ExpectError, Is.EqualTo(false),
+    "ExpectError should be set to false for Valid Data");
     _query = data.Query;
     _name = data.Name;
     _expectError = data.ExpectError;
+    ;
   }
   public WeatherCurrentPostTest(WeatherCurrentDataInvalid data)
   {
+    Assert.That(data.ExpectError, Is.EqualTo(true),
+    "ExpectError should be set to true for Invalid Data");
     _query = data.Query;
     _expectError = data.ExpectError;
     _errorCode = data.ErrorCode;
