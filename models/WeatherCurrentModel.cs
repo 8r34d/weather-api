@@ -44,20 +44,8 @@ public class CurrentCurrent
   public required double Gti { get; set; }
 }
 
-public class CurrentLocation
-{
-  public required string Name { get; set; }
-  public required string Region { get; set; }
-  public required string Country { get; set; }
-  public required double Lat { get; set; }
-  public required double Lon { get; set; }
-  public required string Tz_id { get; set; }
-  public required int Localtime_epoch { get; set; }
-  public required string Localtime { get; set; }
-}
-
 public class WeatherCurrentModel
 {
-  public required CurrentLocation Location { get; set; }
+  public required Location Location { get; set; }
   public required CurrentCurrent Current { get; set; }
 }
