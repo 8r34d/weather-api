@@ -6,7 +6,7 @@ using api.helpers;
 
 namespace api.tests;
 
-[TestFixtureSource(typeof(WeatherCurrentFixture), nameof(WeatherCurrentFixture.GetTestData))]
+[TestFixtureSource(typeof(CurrentFixture), nameof(CurrentFixture.GetTestData))]
 public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
 {
   private readonly CurrentTestDataModel _data = data;

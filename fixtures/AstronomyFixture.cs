@@ -1,17 +1,14 @@
-// WeatherAstronomyFixture
-// AstronomyTestDataModel
-
 using CsvHelper;
 using System.Globalization;
 using api.models;
 
 namespace api.fixtures;
 
-public class WeatherAstronomyFixture
+public class AstronomyFixture
 {
   public static IEnumerable<AstronomyTestDataModel> GetTestData()
   {
-    string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/weather-astronomy-data.csv");
+    string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/astronomy-data.csv");
 
     using var reader = new StreamReader(inputFile);
     using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
