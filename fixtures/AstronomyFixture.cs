@@ -6,14 +6,14 @@ namespace api.fixtures;
 
 public class AstronomyFixture
 {
-  public static IEnumerable<AstronomyTestDataModel> GetTestData()
+  public static IEnumerable<AstronomyTestModel> GetTestData()
   {
     string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/astronomy-data.csv");
 
     using var reader = new StreamReader(inputFile);
     using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-    var records = csv.GetRecords<AstronomyTestDataModel>();
+    var records = csv.GetRecords<AstronomyTestModel>();
 
     foreach (var record in records)
     {

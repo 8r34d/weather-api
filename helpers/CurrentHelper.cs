@@ -10,7 +10,7 @@ public class CurrentHelper
   public static void ContentAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    CurrentTestDataModel data)
+    CurrentTestModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
@@ -28,7 +28,7 @@ public class CurrentHelper
   public static void ErrorAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    CurrentTestDataModel data)
+    CurrentTestModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
 

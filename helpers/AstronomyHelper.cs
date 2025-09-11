@@ -10,7 +10,7 @@ public class AstronomyHelper
   public static void ContentAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    AstronomyTestDataModel data)
+    AstronomyTestModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
@@ -37,7 +37,7 @@ public class AstronomyHelper
   public static void ErrorAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    AstronomyTestDataModel data)
+    AstronomyTestModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
 

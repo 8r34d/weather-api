@@ -7,9 +7,9 @@ using api.helpers;
 namespace api.tests;
 
 [TestFixtureSource(typeof(CurrentFixture), nameof(CurrentFixture.GetTestData))]
-public class CurrentGetTest(CurrentTestDataModel data) : BaseTest
+public class CurrentGetTest(CurrentTestModel data) : BaseTest
 {
-  private readonly CurrentTestDataModel _data = data;
+  private readonly CurrentTestModel _data = data;
 
   [Test]
   public void GetCurrent()

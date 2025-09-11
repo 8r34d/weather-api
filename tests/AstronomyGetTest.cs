@@ -7,9 +7,9 @@ using api.models;
 namespace api.tests;
 
 [TestFixtureSource(typeof(AstronomyFixture), nameof(AstronomyFixture.GetTestData))]
-public class AstronomyGetTest(AstronomyTestDataModel data) : BaseTest
+public class AstronomyGetTest(AstronomyTestModel data) : BaseTest
 {
-  private readonly AstronomyTestDataModel _data = data;
+  private readonly AstronomyTestModel _data = data;
 
   [Test]
   public void GetAstronomy()
