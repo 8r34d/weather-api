@@ -1,3 +1,7 @@
 Type,Ref,Description,Query,Name,ExpectedError,ErrorCode,ErrorMessage
-Pass,TC1001,First test case,stockholm,Stockholm,false,0,None
-Pass,TC1002,Second test case,london,London,false,0,None
+Pass,TC1001,City name,london,London,false,0,None
+Pass,TC1002,UK postcode,SW5,Earls Court,false,0,None
+Fail,TC1003,Bad US zip,90521,None,true,1006,No matching location found.
+Pass,TC1004,US zip,90210,Beverly Hills,false,0,None
+Pass,TC1005,Canada postal code,M5V 3L9,Toronto,false,0,None
+Fail,TC1006,Bad input,?,None,true,1006,No matching location found.

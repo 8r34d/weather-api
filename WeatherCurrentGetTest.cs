@@ -8,38 +8,13 @@ namespace api;
 [TestFixtureSource(typeof(WeatherCurrentGetFixtureData), nameof(WeatherCurrentGetFixtureData.GetTestData))]
 public class WeatherCurrentGetTest : WeatherBaseTest
 {
-  // private readonly string _query = "";
-  // private readonly string _name = "";
-  // private readonly bool _expectError;
-  // private readonly int _errorCode;
-  // private readonly string _errorMessage = "";
 
   private readonly CurrentTestDataModel _data;
-
 
   public WeatherCurrentGetTest(CurrentTestDataModel data)
   {
     _data = data;
   }
-
-
-  // public WeatherCurrentGetTest(WeatherCurrentDataValid data)
-  // {
-  //   Assert.That(data.ExpectError, Is.EqualTo(false),
-  //   "ExpectError should be set to false for Valid Data");
-  //   _query = data.Query;
-  //   _name = data.Name;
-  //   _expectError = data.ExpectError;
-  // }
-  // public WeatherCurrentGetTest(WeatherCurrentDataInvalid data)
-  // {
-  //   Assert.That(data.ExpectError, Is.EqualTo(true),
-  //   "ExpectError should be set to true for Invalid Data");
-  //   _query = data.Query;
-  //   _expectError = data.ExpectError;
-  //   _errorCode = data.ErrorCode;
-  //   _errorMessage = data.ErrorMessage;
-  // }
 
   [Test]
   public void GetCurrent()
@@ -80,7 +55,6 @@ public class WeatherCurrentGetTest : WeatherBaseTest
 
     public static IEnumerable<CurrentTestDataModel> GetTestData()
     {
-      // string inputFile = @"../../../test-data.csv";
       string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/test-data.csv");
 
       using var reader = new StreamReader(inputFile);
