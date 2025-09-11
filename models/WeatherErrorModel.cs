@@ -1,4 +1,4 @@
-namespace api;
+namespace api.models;
 
 public class Error
 {
@@ -6,7 +6,7 @@ public class Error
   public required string Message { get; set; }
 }
 
-public class WeatherError
+public class WeatherErrorModel
 {
   public required Error Error { get; set; }
 }

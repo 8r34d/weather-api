@@ -1,4 +1,4 @@
-namespace api;
+namespace api.models;
 
 public class AstronomyAstro
 {
@@ -29,7 +29,7 @@ public class AstronomyLocation
   public required string Localtime { get; set; }
 }
 
-public class WeatherAstronomy
+public class WeatherAstronomyModel
 {
   public required AstronomyLocation Location { get; set; }
   public required AstronomyAstronomy Astronomy { get; set; }

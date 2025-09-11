@@ -1,7 +1,7 @@
 using dotenv.net;
 using System.Text.Json;
 
-namespace api;
+namespace api.tests;
 
 public abstract class WeatherBaseTest
 {

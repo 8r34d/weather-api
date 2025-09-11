@@ -1,4 +1,4 @@
-namespace api;
+namespace api.models;
 
 public class CurrentCondition
 {
@@ -56,7 +56,7 @@ public class CurrentLocation
   public required string Localtime { get; set; }
 }
 
-public class WeatherCurrent
+public class WeatherCurrentModel
 {
   public required CurrentLocation Location { get; set; }
   public required CurrentCurrent Current { get; set; }

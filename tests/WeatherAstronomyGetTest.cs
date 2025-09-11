@@ -1,9 +1,8 @@
-using System.Net;
 using RestSharp;
 using dotenv.net.Utilities;
-using System.Text.Json;
+using api.helpers;
 
-namespace api;
+namespace api.tests;
 
 [TestFixtureSource(typeof(WeatherAstronomyGetFixtureData), nameof(WeatherAstronomyGetFixtureData.FixtureParams))]
 public class WeatherAstronomyGetTest : WeatherBaseTest

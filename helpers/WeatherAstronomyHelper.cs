@@ -1,8 +1,9 @@
 using System.Net;
 using RestSharp;
 using System.Text.Json;
+using api.models;
 
-namespace api;
+namespace api.helpers;
 
 public class WeatherAstronomyHelper
 {
@@ -13,7 +14,7 @@ public class WeatherAstronomyHelper
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-    WeatherAstronomy? content = JsonSerializer.Deserialize<WeatherAstronomy>(restResponse.Content!, options);
+    WeatherAstronomyModel? content = JsonSerializer.Deserialize<WeatherAstronomyModel>(restResponse.Content!, options);
 
     Assert.Multiple(() =>
     {
@@ -41,7 +42,7 @@ public class WeatherAstronomyHelper
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
 
-    WeatherError? weatherError = JsonSerializer.Deserialize<WeatherError>(restResponse.Content!, options);
+    WeatherErrorModel? weatherError = JsonSerializer.Deserialize<WeatherErrorModel>(restResponse.Content!, options);
 
     Assert.That(weatherError?.Error, Is.Not.Null);
     Assert.Multiple(() =>

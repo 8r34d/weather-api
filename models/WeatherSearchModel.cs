@@ -1,6 +1,6 @@
-namespace api;
+namespace api.models;
 
-public class WeatherSearch
+public class WeatherSearchModel
 {
   public required int Id { get; set; }
   public required string Name { get; set; }

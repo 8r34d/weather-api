@@ -1,11 +1,12 @@
 ﻿using RestSharp;
 using dotenv.net.Utilities;
-using CsvHelper;
-using System.Globalization;
+using api.fixtures;
+using api.models;
+using api.helpers;
 
-namespace api;
+namespace api.tests;
 
-[TestFixtureSource(typeof(WeatherCurrentPostFixtureData), nameof(WeatherCurrentPostFixtureData.GetTestData))]
+[TestFixtureSource(typeof(WeatherCurrentFixture), nameof(WeatherCurrentFixture.GetTestData))]
 public class WeatherCurrentPostTest(CurrentTestDataModel data) : WeatherBaseTest
 {
   private readonly CurrentTestDataModel _data = data;
@@ -13,9 +14,7 @@ public class WeatherCurrentPostTest(CurrentTestDataModel data) : WeatherBaseTest
   [Test]
   public void PostCurrent()
   {
-    Console.WriteLine("\n**** TEST FIXTURE");
     Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
-    Console.WriteLine("****");
 
     var format = "json";
     var name = "current";
@@ -37,24 +36,6 @@ public class WeatherCurrentPostTest(CurrentTestDataModel data) : WeatherBaseTest
     else
     {
       WeatherCurrentHelper.ContentAssertions(restResponse, options, _data);
-    }
-  }
-}
-
-public class WeatherCurrentPostFixtureData
-{
-  public static IEnumerable<CurrentTestDataModel> GetTestData()
-  {
-    string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/test-data.csv");
-
-    using var reader = new StreamReader(inputFile);
-    using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-    var records = csv.GetRecords<CurrentTestDataModel>();
-
-    foreach (var record in records)
-    {
-      yield return record;
     }
   }
 }
