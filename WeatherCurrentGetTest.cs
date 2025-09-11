@@ -6,19 +6,18 @@ using System.Globalization;
 namespace api;
 
 [TestFixtureSource(typeof(WeatherCurrentGetFixtureData), nameof(WeatherCurrentGetFixtureData.GetTestData))]
-public class WeatherCurrentGetTest : WeatherBaseTest
+public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
 {
 
-  private readonly CurrentTestDataModel _data;
-
-  public WeatherCurrentGetTest(CurrentTestDataModel data)
-  {
-    _data = data;
-  }
+  private readonly CurrentTestDataModel _data = data;
 
   [Test]
   public void GetCurrent()
   {
+    Console.WriteLine("\n**** TEST FIXTURE");
+    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
+    Console.WriteLine("****");
+
     var format = "json";
     var name = "current";
     var getUrl = $"{_baseUrl}/v1/{name}.{format}?q={_data.Query}";
@@ -43,16 +42,6 @@ public class WeatherCurrentGetTest : WeatherBaseTest
 
   public class WeatherCurrentGetFixtureData
   {
-    public static IEnumerable<TestFixtureData> FixtureParams
-    {
-      get
-      {
-        yield return new TestFixtureData(new WeatherCurrentDataValid("london", "London", false));
-        yield return new TestFixtureData(new WeatherCurrentDataValid("SW5", "Earls Court", false));
-        yield return new TestFixtureData(new WeatherCurrentDataInvalid("90521", true, 1006, "No matching location found."));
-      }
-    }
-
     public static IEnumerable<CurrentTestDataModel> GetTestData()
     {
       string inputFile = Path.Combine(TestContext.CurrentContext.TestDirectory, @"data/test-data.csv");
