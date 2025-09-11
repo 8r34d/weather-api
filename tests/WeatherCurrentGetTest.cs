@@ -9,13 +9,12 @@ namespace api.tests;
 [TestFixtureSource(typeof(WeatherCurrentFixture), nameof(WeatherCurrentFixture.GetTestData))]
 public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
 {
-
   private readonly CurrentTestDataModel _data = data;
 
   [Test]
   public void GetCurrent()
   {
-    Console.WriteLine($"GetCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
+    Console.WriteLine($"GetCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
 
     var format = "json";
     var name = "current";
@@ -29,7 +28,7 @@ public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
     RestResponse restResponse = client.Execute(restRequest);
     Assert.That(restResponse.Content, Is.Not.Empty);
 
-    if (_data.ExpectedError)
+    if (_data.ExpectError)
     {
       WeatherCurrentHelper.ErrorAssertions(restResponse, options, _data);
     }

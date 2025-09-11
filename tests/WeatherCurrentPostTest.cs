@@ -14,7 +14,7 @@ public class WeatherCurrentPostTest(CurrentTestDataModel data) : WeatherBaseTest
   [Test]
   public void PostCurrent()
   {
-    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
+    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
 
     var format = "json";
     var name = "current";
@@ -29,7 +29,7 @@ public class WeatherCurrentPostTest(CurrentTestDataModel data) : WeatherBaseTest
     RestResponse restResponse = client.Execute(restRequest);
     Assert.That(restResponse.Content, Is.Not.Empty);
 
-    if (_data.ExpectedError)
+    if (_data.ExpectError)
     {
       WeatherCurrentHelper.ErrorAssertions(restResponse, options, _data);
     }

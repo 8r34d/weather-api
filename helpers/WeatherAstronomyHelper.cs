@@ -10,7 +10,7 @@ public class WeatherAstronomyHelper
   public static void ContentAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    string _name)
+    AstronomyTestDataModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
@@ -19,7 +19,7 @@ public class WeatherAstronomyHelper
     Assert.Multiple(() =>
     {
       Assert.That(content?.Location, Is.Not.Null);
-      Assert.That(content?.Location.Name, Is.EqualTo(_name));
+      Assert.That(content?.Location.Name, Is.EqualTo(data.Name));
       Assert.That(content?.Astronomy.Astro.Is_moon_up, Is.AnyOf(0, 1));
       Assert.That(content?.Astronomy.Astro.Is_sun_up, Is.AnyOf(0, 1));
       Assert.That(content?.Astronomy.Astro.Moon_phase, Is.AnyOf(
@@ -37,8 +37,7 @@ public class WeatherAstronomyHelper
   public static void ErrorAssertions(
     RestResponse restResponse,
     JsonSerializerOptions options,
-    int _errorCode,
-    string _errorMessage)
+    AstronomyTestDataModel data)
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
 
@@ -47,8 +46,8 @@ public class WeatherAstronomyHelper
     Assert.That(weatherError?.Error, Is.Not.Null);
     Assert.Multiple(() =>
     {
-      Assert.That(weatherError?.Error.Code, Is.EqualTo(_errorCode));
-      Assert.That(weatherError?.Error.Message, Is.EqualTo(_errorMessage));
+      Assert.That(weatherError?.Error.Code, Is.EqualTo(data.ErrorCode));
+      Assert.That(weatherError?.Error.Message, Is.EqualTo(data.ErrorMessage));
     });
   }
 }

@@ -1,4 +1,4 @@
-Type,Ref,Description,Query,Name,ExpectedError,ErrorCode,ErrorMessage
+Type,Ref,Description,Query,Name,ExpectError,ErrorCode,ErrorMessage
 Pass,TC1001,City name,london,London,false,0,None
 Pass,TC1002,UK postcode,SW5,Earls Court,false,0,None
 Fail,TC1003,Bad US zip,90521,None,true,1006,No matching location found.

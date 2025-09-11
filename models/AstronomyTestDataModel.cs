@@ -1,20 +1,16 @@
-namespace api.models;
+using api.types;
 
-public enum TestType
-{
-  Pass,
-  Fail,
-  Skip
-}
+namespace api.models;
 
 public class AstronomyTestDataModel
 {
-  public TestType Type { get; set; }
+  public required TestType Type { get; set; }
   public required string Ref { get; set; }
   public required string Description { get; set; }
   public required string Query { get; set; }
+  public required string Date { get; set; }
   public required string Name { get; set; }
-  public required bool ExpectedError { get; set; }
-  public int ErrorCode { get; set; }
+  public required bool ExpectError { get; set; }
+  public required int ErrorCode { get; set; }
   public required string ErrorMessage { get; set; }
 }
