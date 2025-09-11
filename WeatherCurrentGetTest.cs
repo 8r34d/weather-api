@@ -15,7 +15,7 @@ public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
   public void GetCurrent()
   {
     Console.WriteLine("\n**** TEST FIXTURE");
-    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
+    Console.WriteLine($"GetCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectedError},{_data.ErrorCode},{_data.ErrorMessage}");
     Console.WriteLine("****");
 
     var format = "json";
