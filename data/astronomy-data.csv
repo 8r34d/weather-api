@@ -1,7 +1,7 @@
 Type,Ref,Description,Query,Date,Name,ExpectError,ErrorCode,ErrorMessage
-Pass,TC2001,City name,london,2022-07-22,London,false,0,None
-Pass,TC2002,UK postcode,SW5,2023-08-23,Earls Court,false,0,None
-Fail,TC2003,Bad US zip,90521,2024-09-24,None,true,1006,No matching location found.
-Pass,TC2004,US zip,90210,2021-12-25,Beverly Hills,false,0,None
-Pass,TC2005,Canada postal code,M5V 3L9,2020-01-26,Toronto,false,0,None
-Fail,TC2006,Bad input,?,2019-02-27,None,true,1006,No matching location found.
+Valid,ASTRONOMY_DATA_0001,City name,london,2022-07-22,London,false,0,None
+Valid,ASTRONOMY_DATA_0002,UK postcode,SW5,2023-08-23,Earls Court,false,0,None
+Invalid,ASTRONOMY_DATA_0003,Bad US zip,90521,2024-09-24,None,true,1006,No matching location found.
+Valid,ASTRONOMY_DATA_0004,US zip,90210,2021-12-25,Beverly Hills,false,0,None
+Valid,ASTRONOMY_DATA_0005,Canada postal code,M5V 3L9,2020-01-26,Toronto,false,0,None
+Invalid,ASTRONOMY_DATA_0006,Bad input,?,2019-02-27,None,true,1006,No matching location found.

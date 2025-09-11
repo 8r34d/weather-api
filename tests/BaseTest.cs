@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace api.tests;
 
-public abstract class WeatherBaseTest
+public abstract class BaseTest
 {
   protected readonly string _baseUrl = "https://api.weatherapi.com/v1";
   protected JsonSerializerOptions options;

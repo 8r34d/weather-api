@@ -2,7 +2,7 @@ namespace api.types;
 
 public enum TestType
 {
-  Pass,
-  Fail,
+  Valid,
+  Invalid,
   Skip
 }

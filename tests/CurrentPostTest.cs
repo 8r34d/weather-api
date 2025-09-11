@@ -7,23 +7,24 @@ using api.helpers;
 namespace api.tests;
 
 [TestFixtureSource(typeof(CurrentFixture), nameof(CurrentFixture.GetTestData))]
-public class WeatherCurrentGetTest(CurrentTestDataModel data) : WeatherBaseTest
+public class CurrentPostTest(CurrentTestDataModel data) : BaseTest
 {
   private readonly CurrentTestDataModel _data = data;
 
   [Test]
-  public void GetCurrent()
+  public void PostCurrent()
   {
-    Console.WriteLine($"GetCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
+    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
 
     var format = "json";
     var name = "current";
-    var getUrl = $"{_baseUrl}/v1/{name}.{format}?q={_data.Query}";
+    var postUrl = $"{_baseUrl}/v1/{name}.{format}";
 
-    RestClient client = new(getUrl);
+    RestClient client = new(postUrl);
     client.AddDefaultHeader("key", EnvReader.GetStringValue("WEATHER_API_KEY"));
 
-    RestRequest restRequest = new(getUrl, Method.Get);
+    RestRequest restRequest = new(postUrl, Method.Post);
+    restRequest.AddParameter("q", _data.Query);
 
     RestResponse restResponse = client.Execute(restRequest);
     Assert.That(restResponse.Content, Is.Not.Empty);
