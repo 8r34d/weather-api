@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace api;
 
-public class WeatherCurrentHelper
+public class WeatherAstronomyHelper
 {
   public static void ContentAssertions(
     RestResponse restResponse,
@@ -13,14 +13,23 @@ public class WeatherCurrentHelper
   {
     Assert.That(restResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-    WeatherCurrent? content = JsonSerializer.Deserialize<WeatherCurrent>(restResponse.Content!, options);
+    WeatherAstronomy? content = JsonSerializer.Deserialize<WeatherAstronomy>(restResponse.Content!, options);
 
     Assert.Multiple(() =>
     {
-      Assert.That(content?.Current, Is.Not.Null);
       Assert.That(content?.Location, Is.Not.Null);
       Assert.That(content?.Location.Name, Is.EqualTo(_name));
-      Assert.That(content?.Current.Is_day, Is.AnyOf(0, 1));
+      Assert.That(content?.Astronomy.Astro.Is_moon_up, Is.AnyOf(0, 1));
+      Assert.That(content?.Astronomy.Astro.Is_sun_up, Is.AnyOf(0, 1));
+      Assert.That(content?.Astronomy.Astro.Moon_phase, Is.AnyOf(
+        "New Moon",
+        "Waxing Crescent",
+        "First Quarter",
+        "Waxing Gibbous",
+        "Full Moon",
+        "Waning Gibbous",
+        "Last Quarter",
+        "Waning Crescent"));
     });
   }
 

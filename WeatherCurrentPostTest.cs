@@ -1,5 +1,4 @@
-﻿using System.Net;
-using RestSharp;
+﻿using RestSharp;
 using dotenv.net.Utilities;
 
 namespace api;
