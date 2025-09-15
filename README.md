@@ -35,5 +35,5 @@ See `example-dot-env`
 _to run the tests_
 
 ```
-~ dotnet test
+dotnet test
 ```
