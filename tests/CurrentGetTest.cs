@@ -14,8 +14,9 @@ public class CurrentGetTest(CurrentTestModel data) : BaseTest
   [Test]
   public void GetCurrent()
   {
+    var c = this.GetType().Name;
     var x = DataHelper<CurrentTestModel>.ExpandData(_data);
-    Console.WriteLine($"{this.GetType().Name}: {string.Join(",", x)}");
+    Console.WriteLine($"{c}: {string.Join(",", x)}");
 
     var format = "json";
     var name = "current";

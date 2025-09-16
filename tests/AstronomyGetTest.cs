@@ -14,8 +14,9 @@ public class AstronomyGetTest(AstronomyTestModel data) : BaseTest
   [Test]
   public void GetAstronomy()
   {
+    var c = this.GetType().Name;
     var x = DataHelper<AstronomyTestModel>.ExpandData(_data);
-    Console.WriteLine($"{this.GetType().Name}: {string.Join(",", x)}");
+    Console.WriteLine($"{c}: {string.Join(",", x)}");
 
     var format = "json";
     var name = "astronomy";
