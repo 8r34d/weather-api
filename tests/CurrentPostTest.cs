@@ -14,7 +14,10 @@ public class CurrentPostTest(CurrentTestModel data) : BaseTest
   [Test]
   public void PostCurrent()
   {
-    Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
+    var x = DataHelper<CurrentTestModel>.ExpandData(_data);
+    Console.WriteLine($"{this.GetType().Name}: {string.Join(",", x)}");
+
+    // Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
 
     var format = "json";
     var name = "current";
