@@ -18,8 +18,6 @@ public class CurrentPostTest(CurrentTestModel data) : BaseTest
     var x = DataHelper<CurrentTestModel>.ExpandData(_data);
     Console.WriteLine($"{c}: {string.Join(",", x)}");
 
-    // Console.WriteLine($"PostCurrent: {_data.Type},{_data.Ref},{_data.Description},{_data.Query},{_data.Name},{_data.ExpectError},{_data.ErrorCode},{_data.ErrorMessage}");
-
     var format = "json";
     var name = "current";
     var postUrl = $"{_baseUrl}/v1/{name}.{format}";
