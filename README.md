@@ -40,7 +40,7 @@ dotnet test
 
 ### Filters
 
-`- dotnet test --filter <Expression>`
+- `dotnet test --filter <Expression>`
 
 ```
 dotnet test --filter Astronomy
@@ -62,7 +62,7 @@ dotnet test --filter Get
 
   - CurrentGetTest
 
-## Test Results
+## Test Logs
 
 ### AstronomyGetTest
 
