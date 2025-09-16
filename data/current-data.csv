@@ -5,3 +5,4 @@ Invalid,CURRENT_DATA_0003,Bad US zip,90521,None,true,1006,No matching location f
 Valid,CURRENT_DATA_0004,US zip,90210,Beverly Hills,false,0,None
 Valid,CURRENT_DATA_0005,Canada postal code,M5V 3L9,Toronto,false,0,None
 Invalid,CURRENT_DATA_0006,Bad input,?,None,true,1006,No matching location found.
+Skip,CURRENT_DATA_0007,Example skipped test,?,None,false,0,None

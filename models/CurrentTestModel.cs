@@ -1,4 +1,4 @@
-using api.types;
+using api.enums;
 
 namespace api.models;
 

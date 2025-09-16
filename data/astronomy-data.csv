@@ -5,3 +5,4 @@ Invalid,ASTRONOMY_DATA_0003,Bad US zip,90521,2024-09-24,None,true,1006,No matchi
 Valid,ASTRONOMY_DATA_0004,US zip,90210,2021-12-25,Beverly Hills,false,0,None
 Valid,ASTRONOMY_DATA_0005,Canada postal code,M5V 3L9,2020-01-26,Toronto,false,0,None
 Invalid,ASTRONOMY_DATA_0006,Bad input,?,2019-02-27,None,true,1006,No matching location found.
+Skip,ASTRONOMY_DATA_0007,Example skipped test,?,2018-03-28,None,false,0,None

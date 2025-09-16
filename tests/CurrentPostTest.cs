@@ -1,43 +1,49 @@
-﻿using RestSharp;
-using dotenv.net.Utilities;
+﻿using api.enums;
 using api.fixtures;
-using api.models;
 using api.helpers;
+using api.models;
+using dotenv.net.Utilities;
+using RestSharp;
 
 namespace api.tests;
 
 [TestFixtureSource(typeof(CurrentFixture), nameof(CurrentFixture.GetTestData))]
 public class CurrentPostTest(CurrentTestModel data) : BaseTest
 {
+  private readonly string _api = ApiHelper.Current.Value;
+  private readonly string _format = FormatHelper.Json.Value;
   private readonly CurrentTestModel _data = data;
 
   [Test]
   public void PostCurrent()
   {
-    var c = this.GetType().Name;
-    var x = DataHelper<CurrentTestModel>.ExpandData(_data);
-    Console.WriteLine($"{c}: {string.Join(",", x)}");
+    Console.WriteLine($"{this.GetType().Name}: {string.Join(",", DataHelper<CurrentTestModel>.ExpandData(_data))}");
 
-    var format = "json";
-    var name = "current";
-    var postUrl = $"{_baseUrl}/v1/{name}.{format}";
-
-    RestClient client = new(postUrl);
-    client.AddDefaultHeader("key", EnvReader.GetStringValue("WEATHER_API_KEY"));
-
-    RestRequest restRequest = new(postUrl, Method.Post);
-    restRequest.AddParameter("q", _data.Query);
-
-    RestResponse restResponse = client.Execute(restRequest);
-    Assert.That(restResponse.Content, Is.Not.Empty);
-
-    if (_data.ExpectError)
+    if (_data.Type == TestType.Skip)
     {
-      CurrentHelper.ErrorAssertions(restResponse, options, _data);
+      Console.WriteLine($"{this.GetType().Name}: {_data.Type}");
     }
     else
     {
-      CurrentHelper.ContentAssertions(restResponse, options, _data);
+      var postUrl = $"{_baseUrl}/{_api}.{_format}";
+
+      RestClient client = new(postUrl);
+      client.AddDefaultHeader("key", EnvReader.GetStringValue("WEATHER_API_KEY"));
+
+      RestRequest restRequest = new(postUrl, Method.Post);
+      restRequest.AddParameter("q", _data.Query);
+
+      RestResponse restResponse = client.Execute(restRequest);
+      Assert.That(restResponse.Content, Is.Not.Empty);
+
+      if (_data.ExpectError)
+      {
+        CurrentHelper.ErrorAssertions(restResponse, options, _data);
+      }
+      else
+      {
+        CurrentHelper.ContentAssertions(restResponse, options, _data);
+      }
     }
   }
 }

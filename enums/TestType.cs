@@ -1,4 +1,4 @@
-namespace api.types;
+namespace api.enums;
 
 public enum TestType
 {
